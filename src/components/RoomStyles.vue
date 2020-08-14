@@ -1,46 +1,68 @@
 <template>
   <div>
     <div>
-      <div class="rooms-container">
-        <div>
-          <div class="img-container1">
-            <!-- <img :src="roomsStyles[0].imageUrl" /> -->
-
-            <!-- <img
-              src="https://images.unsplash.com/photo-1551776235-dde6d482980b?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=2134&q=80"
-              alt
-            />-->
+      <div class="rooms-container" >
+        <!-- v-for -->
+        <div 
+          v-if="index <= 2" 
+          v-for="(item, index) in roomsStyles" 
+          class="room-container"
+        >
+          <div class="img-container1" :style="{ backgroundImage: `url(${item.imageUrl})`}"></div>
+          <p>{{ roomsStyles[index].name }}</p>
+          <div class="room-context">
+            <span class="price">NT.{{roomsStyles[index].normalDayPrice}}</span>
+            <span>平日</span>
+            <span class="normal-days">NT.{{roomsStyles[index].holidayPrice}}假日</span>
           </div>
+        </div>
+        <!-- card1 -->
+        <!-- <div class="room-container">
+          <div class="img-container1"></div>
           <p>{{roomsStyles[0].name}}</p>
-          <span>NT.{{roomsStyles[0].normalDayPrice}}</span>
-          <span>平日</span>
-          <span>{{roomsStyles[0].holidayPrice}}假日</span>
-        </div>
-        <div>
-          <div class="img-container2">
-            <!-- <img :src="roomsStyles[1].imageUrl" /> -->
-            <!-- <img
-              src="https://images.unsplash.com/photo-1564182379166-8fcfdda80151?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1951&q=80"
-              alt
-            />-->
+          <div class="room-context">
+            <span class="price">NT.{{roomsStyles[0].normalDayPrice}}</span>
+            <span>平日</span>
+            <span class="normal-days">NT.{{roomsStyles[0].holidayPrice}}假日</span>
           </div>
+        </div> -->
+        <!-- card2 -->
+        <!-- <div class="room-container">
+          <div class="img-container2"></div>
           <p>{{roomsStyles[1].name}}</p>
-          <p>價位</p>
-        </div>
-        <div>
-          <div class="img-container3">
-            <!-- <img :src="roomsStyles[2].imageUrl" /> -->
-            <!-- <img
-              src="https://images.unsplash.com/photo-1526913621366-a4583840d736?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1950&q=80"
-              alt
-            />-->
+          <div class="room-context">
+            <span class="price">NT.{{roomsStyles[1].normalDayPrice}}</span>
+            <span>平日</span>
+            <span class="normal-days">NT.{{roomsStyles[1].holidayPrice}}假日</span>
           </div>
+        </div> -->
+        <!-- card3 -->
+        <!-- <div class="room-container">
+          <div class="img-container3"></div>
           <p>{{roomsStyles[2].name}}</p>
-          <p>價位</p>
-        </div>
+          <div class="room-context">
+            <span class="price">NT.{{roomsStyles[2].normalDayPrice}}</span>
+            <span>平日</span>
+            <span class="normal-days">NT.{{roomsStyles[2].holidayPrice}}假日</span>
+          </div>
+        </div> -->
       </div>
+      <!-- card4 -->
       <div class="rooms-container">
-        <div>
+        <div 
+          v-if=" 2 < index " 
+          v-for="(item, index) in roomsStyles" 
+          class="room-container"
+        >
+          <div class="img-container1" :style="{ backgroundImage: `url(${item.imageUrl})`}"></div>
+          <p>{{ roomsStyles[index].name }}</p>
+          <div class="room-context">
+            <span class="price">NT.{{roomsStyles[index].normalDayPrice}}</span>
+            <span>平日</span>
+            <span class="normal-days">NT.{{roomsStyles[index].holidayPrice}}假日</span>
+          </div>
+        </div>
+        <!-- <div>
           <div>房型4照片</div>
           <p>房型名稱</p>
           <p>價位</p>
@@ -54,7 +76,7 @@
           <div>房型6照片</div>
           <p>房型名稱</p>
           <p>價位</p>
-        </div>
+        </div> -->
       </div>
     </div>
   </div>
@@ -65,6 +87,7 @@ import axios from "axios"; //引入axios
 export default {
   data() {
     return {
+      test: [1,2],
       roomsStyles: [
         {
           id:
@@ -141,12 +164,25 @@ export default {
   display: flex;
   flex-direction: row;
 }
+.room-container {
+  cursor: pointer;
+  &:hover {
+    .img-container1 {
+      height: 240px;
+    }
+    .room-context {
+      display: block;
+    }
+  }
+}
 .img-container1 {
   width: 300px;
   height: 280px;
   background-image: url(https://images.unsplash.com/photo-1551776235-dde6d482980b?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=2134&q=80);
   background-size: cover;
   background-position: center;
+  margin:11px;
+  box-shadow: 2px 2px 9px 0 rgba(0,0,0,0.18);
 }
 .img-container2 {
   width: 300px;
@@ -164,5 +200,18 @@ export default {
 }
 img {
   width: 100%;
+}
+.price {
+  font-size: 24px;
+  color: black;
+}
+span {
+  color: #6d7278;
+}
+.normal-days {
+  margin-left: 25px;
+}
+.room-context {
+  display: none;
 }
 </style>
