@@ -121,12 +121,7 @@ export default {
   height: 660px;
 }
 ::v-deep img {
-  // object-fit: fill
-  // width:1024px;
   height: 650px;
   object-fit: fill;
-}
-.fit {
-  // object-fit: fill
 }
 </style>

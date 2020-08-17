@@ -1,7 +1,8 @@
 <template>
   <div>
-      <Carousel/>
-      <RoomStyles />
+    <!-- <Carousel /> -->
+    <!-- <RoomStyles /> -->
+    <Logo />
   </div>
 </template>
 
@@ -10,13 +11,15 @@
 import HelloWorld from "@/components/HelloWorld.vue";
 import RoomStyles from "@/components/RoomStyles.vue";
 import Carousel from "@/components/Carousel.vue";
+import Logo from "@/components/Logo.vue";
 
 export default {
   name: "Home",
   components: {
     // HelloWorld
     RoomStyles,
-    Carousel
+    Carousel,
+    Logo
   }
 };
 </script>
@@ -24,4 +27,5 @@ export default {
 // .room-styles img{
 //   display:none
 // }
-// </style>
+//
+</style>
