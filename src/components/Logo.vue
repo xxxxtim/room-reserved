@@ -33,7 +33,7 @@ export default {};
 
 <style lang="scss" scoped>
 $logo-length: 148px;
-$color: white;
+$color: #ffffff;
 
 .logo-container {
   width: $logo-length;
@@ -42,7 +42,7 @@ $color: white;
   justify-content: center;
   align-items: center;
   font-size: 31px;
-  //   color: white;
+  color: $color;
   font-family: NotoSansCJKtc-Medium;
   background: rgba(255, 255, 255, 0.3);
   border: 2px solid #ffffff;
@@ -52,13 +52,15 @@ $color: white;
   display: flex;
   flex-direction: row;
   align-items: center;
+  margin-top: 30px;
+  color: $color;
 }
 .left-container {
   font-size: 25px;
   margin: 0 35px;
 }
 .right-container {
-  border-left: 2px black solid;
+  border-left: 2px $color;
   font-size: 24px;
 }
 .link {
@@ -74,5 +76,8 @@ $color: white;
   flex-direction: column;
   justify-content: center;
   align-items: center;
+  width: 60%;
+  margin: 0 auto;
+  padding: 12% 0;
 }
 </style>

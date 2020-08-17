@@ -1,8 +1,14 @@
 <template>
-  <div>
-    <!-- <Carousel /> -->
-    <!-- <RoomStyles /> -->
-    <Logo />
+  <div class="main-container">
+    <div class="logo">
+      <Logo />
+    </div>
+    <div>
+      <Carousel />
+    </div>
+    <div class="rooms">
+      <RoomStyles />
+    </div>
   </div>
 </template>
 
@@ -23,9 +29,21 @@ export default {
   }
 };
 </script>
-// <style lang="scss" scoped>
-// .room-styles img{
-//   display:none
-// }
-//
+<style lang="scss" scoped>
+.main-container {
+  position: relative;
+  max-width: 1440px;
+  // margin: 0 auto;
+}
+.logo {
+  // position: absolute;
+  // top: 170px;
+  // left: 25%;
+  // z-index: 1;
+}
+.rooms {
+  //   position: absolute;
+  //   left: 106px;
+  //   top: 565px;
+}
 </style>

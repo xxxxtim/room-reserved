@@ -119,6 +119,11 @@ export default {
 <style lang="scss" scoped>
 .banner {
   height: 660px;
+  position: absolute;
+  top: 0;
+  left: 0;
+  z-index: -1;
+  // margin: 0 auto;
 }
 ::v-deep img {
   height: 650px;

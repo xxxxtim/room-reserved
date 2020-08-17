@@ -1,6 +1,6 @@
 <template>
   <div>
-    <div>
+    <div class="rooms-wrapper">
       <div class="rooms-container">
         <!-- v-for -->
         <div
@@ -209,5 +209,15 @@ span {
 }
 .room-context {
   display: none;
+}
+.rooms-wrapper {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  padding-bottom: 165px;
+}
+p {
+  padding-left: 10px;
 }
 </style>
