@@ -13,16 +13,18 @@
       @sliding-start="onSlideStart"
       @sliding-end="onSlideEnd"
     >
-<!-- v-for -->
-<b-carousel-slide 
-class="h-100 "
-v-for="(item, index) in roomsStyles"
- :img-src="item.imageUrl" ></b-carousel-slide>
-<!-- image-1 -->
+      <!-- v-for -->
+      <b-carousel-slide
+        class="h-100"
+        v-for="(item, index) in roomsStyles"
+        :key="index"
+        :img-src="item.imageUrl"
+      ></b-carousel-slide>
+      <!-- image-1 -->
       <!-- <b-carousel-slide img-src="https://picsum.photos/1024/480/?image=52" ></b-carousel-slide> -->
-<!-- image-2 -->
+      <!-- image-2 -->
       <!-- <b-carousel-slide img-src="https://picsum.photos/1024/480/?image=54"></b-carousel-slide> -->
-<!-- image-3 -->
+      <!-- image-3 -->
       <!-- <b-carousel-slide img-src="https://picsum.photos/1024/480/?image=58"></b-carousel-slide> -->
     </b-carousel>
   </div>
@@ -31,12 +33,12 @@ v-for="(item, index) in roomsStyles"
 <script>
 import axios from "axios"; //引入axios
 
-  export default {
-    data() {
-      return {
-        slide: 0,
-        sliding: null,
-        roomsStyles: [
+export default {
+  data() {
+    return {
+      slide: 0,
+      sliding: null,
+      roomsStyles: [
         {
           id:
             "3Elqe8kfMxdZv5xFLV4OUeN6jhmxIvQSTyj4eTgIowfIRvF4rerA2Nuegzc2Rgwu",
@@ -92,18 +94,17 @@ import axios from "axios"; //引入axios
           name: "Deluxe Twin Room"
         }
       ]
-
-      }
+    };
+  },
+  methods: {
+    onSlideStart(slide) {
+      this.sliding = true;
     },
-    methods: {
-      onSlideStart(slide) {
-        this.sliding = true
-      },
-      onSlideEnd(slide) {
-        this.sliding = false
-      }
-    },
-    created() {
+    onSlideEnd(slide) {
+      this.sliding = false;
+    }
+  },
+  created() {
     axios
       .get("https://challenge.thef2e.com/api/thef2e2019/stage6/rooms", {
         headers: {
@@ -113,20 +114,19 @@ import axios from "axios"; //引入axios
       })
       .then(response => (this.roomsStyles = response.data.items));
   }
-  }
+};
 </script>
 <style lang="scss" scoped>
-.banner{
-    height:660px
+.banner {
+  height: 660px;
 }
-::v-deep img{
-    // object-fit: fill
-    // width:1024px;
-    height:650px;
-    object-fit: fill
+::v-deep img {
+  // object-fit: fill
+  // width:1024px;
+  height: 650px;
+  object-fit: fill;
 }
-.fit{
-    // object-fit: fill
+.fit {
+  // object-fit: fill
 }
-
 </style>

@@ -1,11 +1,12 @@
 <template>
   <div>
     <div>
-      <div class="rooms-container" >
+      <div class="rooms-container">
         <!-- v-for -->
-        <div 
-          v-if="index <= 2" 
-          v-for="(item, index) in roomsStyles" 
+        <div
+          v-if="index <= 2"
+          v-for="(item, index) in roomsStyles"
+          :key="item"
           class="room-container"
         >
           <div class="img-container1" :style="{ backgroundImage: `url(${item.imageUrl})`}"></div>
@@ -25,7 +26,7 @@
             <span>平日</span>
             <span class="normal-days">NT.{{roomsStyles[0].holidayPrice}}假日</span>
           </div>
-        </div> -->
+        </div>-->
         <!-- card2 -->
         <!-- <div class="room-container">
           <div class="img-container2"></div>
@@ -35,7 +36,7 @@
             <span>平日</span>
             <span class="normal-days">NT.{{roomsStyles[1].holidayPrice}}假日</span>
           </div>
-        </div> -->
+        </div>-->
         <!-- card3 -->
         <!-- <div class="room-container">
           <div class="img-container3"></div>
@@ -45,15 +46,11 @@
             <span>平日</span>
             <span class="normal-days">NT.{{roomsStyles[2].holidayPrice}}假日</span>
           </div>
-        </div> -->
+        </div>-->
       </div>
       <!-- card4 -->
       <div class="rooms-container">
-        <div 
-          v-if=" 2 < index " 
-          v-for="(item, index) in roomsStyles" 
-          class="room-container"
-        >
+        <div v-if=" 2 < index " v-for="(item, index) in roomsStyles" class="room-container">
           <div class="img-container1" :style="{ backgroundImage: `url(${item.imageUrl})`}"></div>
           <p>{{ roomsStyles[index].name }}</p>
           <div class="room-context">
@@ -76,7 +73,7 @@
           <div>房型6照片</div>
           <p>房型名稱</p>
           <p>價位</p>
-        </div> -->
+        </div>-->
       </div>
     </div>
   </div>
@@ -180,8 +177,8 @@ export default {
   background-image: url(https://images.unsplash.com/photo-1551776235-dde6d482980b?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=2134&q=80);
   background-size: cover;
   background-position: center;
-  margin:11px;
-  box-shadow: 2px 2px 9px 0 rgba(0,0,0,0.18);
+  margin: 11px;
+  box-shadow: 2px 2px 9px 0 rgba(0, 0, 0, 0.18);
 }
 .img-container2 {
   width: 300px;
