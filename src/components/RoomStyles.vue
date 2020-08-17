@@ -87,7 +87,6 @@ import axios from "axios"; //引入axios
 export default {
   data() {
     return {
-      test: [1,2],
       roomsStyles: [
         {
           id:
