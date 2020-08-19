@@ -2,6 +2,7 @@ import Vue from 'vue'
 import VueRouter from 'vue-router'
 import Home from '../views/Home.vue'
 // import page-component
+import SingleRoom from '../views/SingleRoom.vue'
 
 Vue.use(VueRouter)
 
@@ -10,6 +11,11 @@ const routes = [
     path: '/',
     name: 'Home',
     component: Home
+  },
+  {
+    path: '/2',
+    name: 'SingleRoom',
+    component: SingleRoom
   },
   {
     path: '/about',

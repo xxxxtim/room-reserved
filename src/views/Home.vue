@@ -35,15 +35,4 @@ export default {
   max-width: 1440px;
   // margin: 0 auto;
 }
-.logo {
-  // position: absolute;
-  // top: 170px;
-  // left: 25%;
-  // z-index: 1;
-}
-.rooms {
-  //   position: absolute;
-  //   left: 106px;
-  //   top: 565px;
-}
 </style>
