@@ -135,13 +135,19 @@
         <p>NT.1500</p>
         <p>假日(五~日)</p>
       </div>
-      <div class="msg-right">日曆</div>
+      <div class="msg-right">
+        <VueHotelDatepicker />
+      </div>
     </div>
   </div>
 </template>
 
 <script>
+import VueHotelDatepicker from "@northwalker/vue-hotel-datepicker";
 export default {
+  components: {
+    VueHotelDatepicker
+  },
   data() {
     return {
       room: [
@@ -251,6 +257,7 @@ export default {
 .msg-right {
   width: 385px;
   flex: 1 1 auto;
+  text-align: right;
 }
 .iconActive {
   color: black;
