@@ -28,7 +28,7 @@
                 class="time"
               >{{room[0].checkInAndOut.checkInEarly}} — {{room[0].checkInAndOut.checkInLate}}</span>
             </div>
-            <div>
+            <div class="checkoutWrapper">
               <p>check out</p>
               <span class="time">{{room[0].checkInAndOut.checkOut}}</span>
             </div>
@@ -131,9 +131,9 @@
       </div>
       <div class="msg-middle">
         <p>NT.1380</p>
-        <p>平日(1-4)</p>
+        <p>平日(一~四)</p>
         <p>NT.1500</p>
-        <p>假日（5-7）</p>
+        <p>假日(五~日)</p>
       </div>
       <div class="msg-right">日曆</div>
     </div>
@@ -225,6 +225,7 @@ export default {
   height: 220px;
   justify-content: space-around;
   align-items: center;
+  margin: 30px 0;
 }
 .icon-text {
   margin-left: 10px;
@@ -245,6 +246,7 @@ export default {
 .msg-middle {
   width: 130px;
   flex: 3 1 auto;
+  text-align: right;
 }
 .msg-right {
   width: 385px;
@@ -277,5 +279,22 @@ h1 {
 .time {
   font-size: 21px;
   letter-spacing: 2.19px;
+}
+div.time-container p {
+  margin: 0;
+}
+.checkoutWrapper {
+  margin-left: 50px;
+}
+.msg-middle p:nth-child(1) {
+  font-family: NotoSansCJKtc-Light;
+  font-size: 30px;
+  // color: #000000;
+  letter-spacing: 3.13px;
+  // text-align: right;
+  line-height: 27px;
+}
+.msg-middle p:nth-child(2n) {
+  color: #6c757d;
 }
 </style>
