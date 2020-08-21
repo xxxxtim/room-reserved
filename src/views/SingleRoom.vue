@@ -244,6 +244,7 @@ export default {
 .msg-container {
   display: flex;
   flex-direction: row;
+  padding: 65px;
 }
 .msg-left {
   width: 480px;
@@ -253,11 +254,12 @@ export default {
   width: 130px;
   flex: 3 1 auto;
   text-align: right;
+  padding: 0 50px;
 }
 .msg-right {
   width: 385px;
   flex: 1 1 auto;
-  text-align: right;
+  text-align: left;
 }
 .iconActive {
   color: black;
@@ -303,5 +305,12 @@ div.time-container p {
 }
 .msg-middle p:nth-child(2n) {
   color: #6c757d;
+}
+::v-deep .vhd-picker {
+  width: 100%;
+}
+::v-deep .vhd-container {
+  width: 100%;
+  text-align: center;
 }
 </style>
