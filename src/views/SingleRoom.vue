@@ -1,6 +1,8 @@
 <template>
   <div class="main">
     <div class="banner-container">
+      <!-- props測試 -->
+      <RoomCarousel :imgUrl="this.room[0].imageUrl" />
       <div class="banner-left" :style="{ backgroundImage: 'url(' + room[0].imageUrl[0] + ')'}" />
       <div>
         <div class="banner-right" :style="{ backgroundImage: 'url(' + room[0].imageUrl[1] + ')'}" />
@@ -144,9 +146,11 @@
 
 <script>
 import VueHotelDatepicker from "@northwalker/vue-hotel-datepicker";
+import RoomCarousel from "@/components/RoomCarousel.vue";
 export default {
   components: {
-    VueHotelDatepicker
+    VueHotelDatepicker,
+    RoomCarousel
   },
   data() {
     return {
@@ -209,6 +213,7 @@ export default {
 .banner-container {
   display: flex;
   flex-direction: row;
+  position: relative;
 }
 .banner-right {
   width: 356px;
@@ -313,4 +318,14 @@ div.time-container p {
   width: 100%;
   text-align: center;
 }
+// ::v-deep .banner {
+//   width: 60%;
+//   position: absolute;
+//   top: 11px;
+//   left: 20%;
+//   z-index: 1;
+// }
+// ::v-deep img {
+//   height: 560px;
+// }
 </style>
