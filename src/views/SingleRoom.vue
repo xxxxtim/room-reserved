@@ -2,11 +2,24 @@
   <div class="main">
     <div class="banner-container">
       <!-- props測試 -->
-      <RoomCarousel :imgUrl="this.room[0].imageUrl" />
-      <div class="banner-left" :style="{ backgroundImage: 'url(' + room[0].imageUrl[0] + ')'}" />
-      <div>
-        <div class="banner-right" :style="{ backgroundImage: 'url(' + room[0].imageUrl[1] + ')'}" />
-        <div class="banner-right" :style="{ backgroundImage: 'url(' + room[0].imageUrl[2] + ')'}" />
+      <RoomCarousel v-if="isShowCarousel" :imgUrl="this.room[0].imageUrl" />
+      <div
+        @click="isShowCarousel=!isShowCarousel"
+        :class="{ bannerDark: isShowCarousel }"
+        class="banner-left"
+        :style="{ backgroundImage: 'url(' + room[0].imageUrl[0] + ')'}"
+      />
+      <div :class="{ bannerDark: isShowCarousel }">
+        <div
+          @click="isShowCarousel=!isShowCarousel"
+          class="banner-right"
+          :style="{ backgroundImage: 'url(' + room[0].imageUrl[1] + ')'}"
+        />
+        <div
+          @click="isShowCarousel=!isShowCarousel"
+          class="banner-right"
+          :style="{ backgroundImage: 'url(' + room[0].imageUrl[2] + ')'}"
+        />
       </div>
     </div>
     <div class="msg-container">
@@ -154,6 +167,7 @@ export default {
   },
   data() {
     return {
+      isShowCarousel: false,
       room: [
         {
           id:
@@ -318,14 +332,7 @@ div.time-container p {
   width: 100%;
   text-align: center;
 }
-// ::v-deep .banner {
-//   width: 60%;
-//   position: absolute;
-//   top: 11px;
-//   left: 20%;
-//   z-index: 1;
-// }
-// ::v-deep img {
-//   height: 560px;
-// }
+.bannerDark {
+  filter: brightness(0.5);
+}
 </style>
