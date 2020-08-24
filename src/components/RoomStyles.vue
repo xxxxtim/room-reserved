@@ -2,78 +2,15 @@
   <div>
     <div class="rooms-wrapper">
       <div class="rooms-container">
-        <!-- v-for -->
-        <div
-          v-if="index <= 2"
-          v-for="(item, index) in roomsStyles"
-          :key="item"
-          class="room-container"
-        >
+        <div v-for="(item, index) in getRoomsStyles" class="room-container">
           <div class="img-container1" :style="{ backgroundImage: `url(${item.imageUrl})`}"></div>
-          <p>{{ roomsStyles[index].name }}</p>
+          <p>{{ getRoomsStyles[index].name }}</p>
           <div class="room-context">
-            <span class="price">NT.{{roomsStyles[index].normalDayPrice}}</span>
+            <span class="price">NT.{{getRoomsStyles[index].normalDayPrice}}</span>
             <span>平日</span>
-            <span class="normal-days">NT.{{roomsStyles[index].holidayPrice}}假日</span>
+            <span class="normal-days">NT.{{getRoomsStyles[index].holidayPrice}}假日</span>
           </div>
         </div>
-        <!-- card1 -->
-        <!-- <div class="room-container">
-          <div class="img-container1"></div>
-          <p>{{roomsStyles[0].name}}</p>
-          <div class="room-context">
-            <span class="price">NT.{{roomsStyles[0].normalDayPrice}}</span>
-            <span>平日</span>
-            <span class="normal-days">NT.{{roomsStyles[0].holidayPrice}}假日</span>
-          </div>
-        </div>-->
-        <!-- card2 -->
-        <!-- <div class="room-container">
-          <div class="img-container2"></div>
-          <p>{{roomsStyles[1].name}}</p>
-          <div class="room-context">
-            <span class="price">NT.{{roomsStyles[1].normalDayPrice}}</span>
-            <span>平日</span>
-            <span class="normal-days">NT.{{roomsStyles[1].holidayPrice}}假日</span>
-          </div>
-        </div>-->
-        <!-- card3 -->
-        <!-- <div class="room-container">
-          <div class="img-container3"></div>
-          <p>{{roomsStyles[2].name}}</p>
-          <div class="room-context">
-            <span class="price">NT.{{roomsStyles[2].normalDayPrice}}</span>
-            <span>平日</span>
-            <span class="normal-days">NT.{{roomsStyles[2].holidayPrice}}假日</span>
-          </div>
-        </div>-->
-      </div>
-      <!-- card4 -->
-      <div class="rooms-container">
-        <div v-if=" 2 < index " v-for="(item, index) in roomsStyles" class="room-container">
-          <div class="img-container1" :style="{ backgroundImage: `url(${item.imageUrl})`}"></div>
-          <p>{{ roomsStyles[index].name }}</p>
-          <div class="room-context">
-            <span class="price">NT.{{roomsStyles[index].normalDayPrice}}</span>
-            <span>平日</span>
-            <span class="normal-days">NT.{{roomsStyles[index].holidayPrice}}假日</span>
-          </div>
-        </div>
-        <!-- <div>
-          <div>房型4照片</div>
-          <p>房型名稱</p>
-          <p>價位</p>
-        </div>
-        <div>
-          <div>房型5照片</div>
-          <p>房型名稱</p>
-          <p>價位</p>
-        </div>
-        <div>
-          <div>房型6照片</div>
-          <p>房型名稱</p>
-          <p>價位</p>
-        </div>-->
       </div>
     </div>
   </div>
@@ -81,6 +18,7 @@
 
 <script>
 import axios from "axios"; //引入axios
+import { mapGetters } from "vuex";
 export default {
   data() {
     return {
@@ -143,14 +81,13 @@ export default {
     };
   },
   created() {
-    axios
-      .get("https://challenge.thef2e.com/api/thef2e2019/stage6/rooms", {
-        headers: {
-          Authorization:
-            "Bearer IOdf0UIIYuWAaUqB84OcRb0NJYEBDWYUFygTLF2N8MV1WD5J6GK4HDHnGwUL"
-        }
-      })
-      .then(response => (this.roomsStyles = response.data.items));
+    console.log(this.getRoomsStyles);
+  },
+  computed: {
+    // getRoomsStyles() {
+    //   return store.getters.getRoomsStyles;
+    // }
+    ...mapGetters(["getRoomsStyles"])
   }
 };
 </script>
@@ -159,6 +96,8 @@ export default {
 .rooms-container {
   display: flex;
   flex-direction: row;
+  flex-wrap: wrap;
+  justify-content: center;
 }
 .room-container {
   cursor: pointer;
