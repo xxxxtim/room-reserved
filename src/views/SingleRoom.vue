@@ -7,7 +7,7 @@
         @click="isShowCarousel=!isShowCarousel"
         :class="{ bannerDark: isShowCarousel }"
         class="banner-left"
-        :style="{ backgroundImage: 'url(' + room[0].imageUrl[0] + ')'}"
+        :style="{ backgroundImage: 'url(' + room[0].imageUrl[0] + ')' }"
       />
       <div :class="{ bannerDark: isShowCarousel }">
         <div
@@ -151,7 +151,8 @@
         <p>假日(五~日)</p>
       </div>
       <div class="msg-right">
-        <VueHotelDatepicker />
+        <VueHotelDatepicker placeholder="請選擇預約日期" />
+        <!-- <Datepicker placeholder="請選擇預約日期"></Datepicker> -->
       </div>
     </div>
   </div>
@@ -160,10 +161,12 @@
 <script>
 import VueHotelDatepicker from "@northwalker/vue-hotel-datepicker";
 import RoomCarousel from "@/components/RoomCarousel.vue";
+import Datepicker from "vuejs-datepicker";
 export default {
   components: {
     VueHotelDatepicker,
-    RoomCarousel
+    RoomCarousel,
+    Datepicker
   },
   data() {
     return {
