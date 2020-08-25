@@ -14,7 +14,7 @@ const routes = [
   },
   {
     path: '/2',
-    name: 'SingleRoom',
+    name: 'RoomDetails',
     component: SingleRoom
   },
   {

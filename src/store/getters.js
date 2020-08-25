@@ -1,5 +1,8 @@
 export default {
     getRoomsStyles({ state }) {
-        return state.roomsStyles
+        return state.roomsStyles;
+    },
+    getRoomDetails({ state }) {
+        return state.roomDetails;
     }
 }

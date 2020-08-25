@@ -1,5 +1,7 @@
 export default {
     state: {
-        roomsStyles: []
+        roomsStyles: [],
+        roomDetails: [],
+        roomNumber: '',
     }
 }

@@ -2,7 +2,7 @@
 <div>
     <div class="rooms-wrapper">
         <div class="rooms-container">
-            <div v-for="(item, index) in getRoomsStyles" :key="index" class="room-container">
+            <div @click="toRoomDetails(item)" v-for="(item, index) in getRoomsStyles" :key="index" class="room-container">
                 <div class="img-container1" :style="{ backgroundImage: `url(${item.imageUrl})`}"></div>
                 <p>{{ getRoomsStyles[index].name }}</p>
                 <div class="room-context">
@@ -18,13 +18,16 @@
 
 <script>
 import axios from "axios"; //引入axios
+// import store from "@/store";
 import {
-    mapGetters
+    mapGetters,
+    mapMutations
 } from "vuex";
 
 export default {
     data() {
         return {
+            chooseCard: 0
             // roomsStyles: [
             // {
             //   id:
@@ -88,6 +91,21 @@ export default {
     },
     computed: {
         ...mapGetters(["getRoomsStyles"])
+    },
+    methods: {
+        toRoomDetails(item) {
+            // this.chooseCard=
+            // this.$store.commit("chooseRoom", this.index);
+            // ...mapMutations(["chooseRoom"]),
+            // console.log(this.index);
+            console.log(item.id);
+            this.$router.push({
+                name: "RoomDetails",
+                query: {
+                    cardId: item.id
+                }
+            });
+        }
     }
 };
 </script>
