@@ -137,7 +137,8 @@
             <p>假日(五~日)</p>
         </div>
         <div class="msg-right">
-            <VueHotelDatepicker placeholder="請選擇預約日期" />
+            <!-- <VueHotelDatepicker placeholder="請選擇預約日期" /> -->
+            <Datepicker placeholder="顯示90天內預約狀態" :inline="true" />
         </div>
     </div>
 </div>
@@ -353,5 +354,12 @@ div.time-container p {
 
 .bannerDark {
     filter: brightness(0.5);
+}
+
+// datepicker
+
+::v-deep .vdp-datepicker__calendar {
+    display: block;
+    width: 100%;
 }
 </style>
