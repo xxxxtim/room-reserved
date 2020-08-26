@@ -94,13 +94,10 @@ export default {
     },
     methods: {
         toRoomDetails(item) {
-            // this.chooseCard=
-            // this.$store.commit("chooseRoom", this.index);
-            // ...mapMutations(["chooseRoom"]),
-            // console.log(this.index);
             console.log(item.id);
             this.$router.push({
-                name: "RoomDetails",
+                // name: "RoomDetails",
+                path: "/2",
                 query: {
                     cardId: item.id
                 }
