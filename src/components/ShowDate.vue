@@ -1,7 +1,7 @@
 <template>
 <div>
-    <p>{{commentIds}}</p>
-    <!-- <Datepicker :inline="true" :format="dateFormat" :highlighted="highlight" /> -->
+    <!-- <p>{{commentIds}}</p> -->
+    <Datepicker :inline="true" :format="dateFormat" :highlighted="highlight" />
 </div>
 </template>
 
@@ -29,9 +29,9 @@ export default {
                 // daysOfMonth: [15, 20, 31], // Highlight 15th, 20th and 31st of each month
                 dates: [
                     // 指定日期 顯示已預約 (2020,10,16)=>表示為2020年 11/16
-                    new Date(2020, 10, 16),
-                    new Date(2020, 10, 17),
-                    new Date(2020, 10, 18)
+                    // new Date(2020, 10, 16),
+                    // new Date(2020, 10, 17),
+                    // new Date(2020, 10, 18)
                 ],
                 // 只要日期是4的倍數 就返白
                 // customPredictor: function (date) {
@@ -43,6 +43,16 @@ export default {
                 includeDisabled: true // Highlight disabled dates
             }
         };
+    },
+    created() {
+        // console.log(this.commentIds);
+        // this.commentIds.map((item, index) => console.log(typeof item.date));
+        // 預約日期10/16 10/17 10/18
+        this.commentIds.map((item, index) =>
+            this.highlight.dates.push(new Date(item.date))
+        );
+
+        console.table(this.highlight.dates);
     }
 };
 </script>
