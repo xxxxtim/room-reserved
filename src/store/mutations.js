@@ -8,10 +8,11 @@ export default {
     setRoomDetails({ state }, response) {
         state.roomDetails = response.data.room
     },
-    // chooseRoom({ state }, index) {
-    //     state.roomNumber = index
+    setBooking({ state }, response) {
+        console.log(response.data)
+        state.booking = response.data.booking
 
-    // }
+    }
 
 
 

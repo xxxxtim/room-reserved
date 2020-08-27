@@ -4,5 +4,8 @@ export default {
     },
     getRoomDetails({ state }) {
         return state.roomDetails;
+    },
+    getBooking({ state }) {
+        return state.booking;
     }
 }
