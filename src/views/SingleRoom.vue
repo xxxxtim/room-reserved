@@ -141,16 +141,19 @@
             <!-- <Datepicker placeholder="顯示90天內預約狀態" :inline="true" :minimumView="'day'" :maximumView="'day'" disabled="true" /> -->
             <!-- 把訂房資訊props到日曆上 -->
             <ShowDate :commentIds="getBooking" />
+            <button @click="isShowReservation=!isShowReservation" class="reservation">預約時段</button>
         </div>
     </div>
+    <ReserveTable />
 </div>
 </template>
 
 <script>
-import VueHotelDatepicker from "@northwalker/vue-hotel-datepicker";
 import RoomCarousel from "@/components/RoomCarousel.vue";
 import ShowDate from "@/components/ShowDate.vue";
+import ReserveTable from "@/components/ReserveTable.vue";
 import Datepicker from "vuejs-datepicker";
+import VueHotelDatepicker from "@northwalker/vue-hotel-datepicker";
 import store from "@/store";
 import {
     mapGetters
@@ -161,12 +164,14 @@ export default {
         VueHotelDatepicker,
         RoomCarousel,
         Datepicker,
-        ShowDate
+        ShowDate,
+        ReserveTable
     },
     data() {
         return {
             isShowCarousel: false,
-            test: [1, 2, 3]
+            isShowReservation: false
+            // test: [1, 2, 3]
         };
     },
     created() {
@@ -322,6 +327,15 @@ div.time-container p {
 
 .bannerDark {
     filter: brightness(0.5);
+}
+
+.reservation {
+    color: white;
+    background: #575757;
+    width: 118px;
+    height: 53px;
+    border: none;
+    margin-top: 26px;
 }
 
 // datepicker
