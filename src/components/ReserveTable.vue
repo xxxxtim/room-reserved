@@ -9,12 +9,12 @@
                 <p>預約起訖</p>
             </div>
             <div class="input-container">
-                <input type="text" value="name" />
-                <input type="text" value="tel" />
+                <input type="text" placeholder="中/英文名" />
+                <input type="tel" placeholder="09xx" />
                 <div class="date-range">
-                    <input type="text" value="start" />
+                    <input type="date" placeholder="入住日期" value="2020-09-22" min="2020-09-01" max="2020-12-31" step="2020-09-27" />
                     <span>~</span>
-                    <input type="text" value="end" />
+                    <input type="text" placeholder="退房日期" />
                 </div>
             </div>
         </div>
@@ -52,6 +52,11 @@ form {
     flex-direction: column;
     justify-content: center;
     box-shadow: 0 2px 4px 0 rgba(0, 0, 0, 0.5);
+    background: white;
+    position: absolute;
+    z-index: 2;
+    top: 80%;
+    left: 35%;
 }
 
 p {
@@ -92,6 +97,10 @@ h1 {
 div.date-range input {
     width: 91px;
     /* height: 32px; */
+}
+
+div.date-range span {
+    padding: 0 10px;
 }
 
 .total-night {

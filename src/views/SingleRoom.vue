@@ -1,6 +1,6 @@
 <template>
 <div class="main">
-    <div class="banner-container">
+    <div :class="{reservedToggle:isShowReservation}" class="banner-container">
         <!-- <p>{{getRoomDetails[0].imageUrl}}</p> -->
         <!-- props測試 -->
         <RoomCarousel v-if="isShowCarousel" :imgUrl="getRoomDetails[0].imageUrl" />
@@ -10,7 +10,7 @@
             <div @click="isShowCarousel=!isShowCarousel" class="banner-right" :style="{ backgroundImage: 'url(' + getRoomDetails[0].imageUrl[2] + ')'}" />
         </div>
     </div>
-    <div class="msg-container">
+    <div :class="{reservedToggle:isShowReservation}" class="msg-container">
         <div class="msg-left">
             <div class="context-left">
                 <h1>{{getRoomDetails[0].name}}</h1>
@@ -144,7 +144,7 @@
             <button @click="isShowReservation=!isShowReservation" class="reservation">預約時段</button>
         </div>
     </div>
-    <ReserveTable />
+    <ReserveTable v-if="isShowReservation" />
 </div>
 </template>
 
@@ -240,6 +240,17 @@ export default {
     display: flex;
     flex-direction: row;
     padding: 65px;
+    position: relative;
+    // 彈跳視窗
+    // background-color: gray;
+    // opacity: 0.7;
+    // filter: brightness(0.5);
+}
+
+.reservedToggle {
+    background-color: gray;
+    opacity: 0.7;
+    filter: brightness(0.5);
 }
 
 .msg-left {
@@ -252,13 +263,13 @@ export default {
     width: 130px;
     flex: 3 1 auto;
     text-align: right;
-    padding: 0 50px;
+    margin: 0 50px;
 }
 
 .msg-right {
-    width: 385px;
-    flex: 1 1 auto;
-    text-align: left;
+    // width: 385px;
+    // flex: 1 1 auto;
+    // text-align: left;
 }
 
 .iconActive {
@@ -340,8 +351,8 @@ div.time-container p {
 
 // datepicker
 
-::v-deep .vdp-datepicker__calendar {
-    display: block;
-    width: 100%;
-}
+// ::v-deep .vdp-datepicker__calendar {
+//     display: block;
+//     width: 100%;
+// }
 </style>
