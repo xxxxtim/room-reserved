@@ -9,19 +9,19 @@
                 <p>預約起訖</p>
             </div>
             <div class="input-container">
-                <input type="text" placeholder="中/英文名" />
-                <input type="tel" placeholder="09xx" />
+                <input v-model="inputTable.name" type="text" placeholder="中/英文名" required />
+                <input v-model="inputTable.tel" type="tel" placeholder="09xx" required pattern="^09\d{8}$" title="請輸入手機號碼(10位數)" />
                 <div class="date-range">
-                    <input type="date" placeholder="入住日期" value="2020-09-22" min="2020-09-01" max="2020-12-31" step="2020-09-27" />
+                    <Datepicker v-model="inputTable.startDate" format="yyyy-MM-dd" placeholder="入住日期" :highlighted="highlight" :disabled-dates="disabledDates" />
                     <span>~</span>
-                    <input type="text" placeholder="退房日期" />
+                    <Datepicker v-model="inputTable.endDate" format="yyyy-MM-dd" placeholder="退房日期" :highlighted="highlight" :disabled-dates="disabledDates" />
                 </div>
             </div>
         </div>
         <div class="total-night">
             <div>
                 <p>平日時段</p>
-                <p>每日時段</p>
+                <p>假日時段</p>
             </div>
             <div>
                 <p>1夜</p>
@@ -33,15 +33,69 @@
             <span>NT.2580</span>
         </div>
         <div class="button-container">
-            <button class="cancle">取消</button>
+            <button @click="resetTable" class="cancle">取消</button>
             <button class="confirm">確定預約</button>
+            {{inputTable.startDate.getDay()}}
         </div>
     </form>
 </div>
 </template>
 
 <script>
-export default {};
+import Datepicker from "vuejs-datepicker";
+export default {
+    components: {
+        Datepicker
+    },
+    props: {
+        commentIds: {
+            type: Array,
+            required: true
+        },
+        normalDayPrice: {
+            type: Number,
+            required: true
+        },
+        holidayPrice: {
+            type: Number,
+            required: true
+        }
+    },
+    data() {
+        return {
+            inputTable: {
+                name: "",
+                tel: "",
+                startDate: "",
+                endDate: ""
+            },
+            dateFormat: "yyyy-MM-dd",
+
+            highlight: {
+                dates: [],
+                includeDisabled: true // Highlight disabled dates
+            },
+            disabledDates: {
+                dates: []
+            }
+        };
+    },
+    created() {
+        this.commentIds.map((item, index) => {
+            this.highlight.dates.push(new Date(item.date));
+            this.disabledDates.dates.push(new Date(item.date));
+        });
+    },
+    methods: {
+        resetTable: () => {
+            this.inputTable.name = "";
+            this.inputTable.tel = "";
+            this.inputTable.startDate = "";
+            this.inputTable.endDate = "";
+        },
+        countPrice: () => {}
+    }
+};
 </script>
 
 <style lang="scss" scoped>
@@ -67,6 +121,11 @@ h1 {
     padding-left: 20px;
     font-size: 24px;
     text-align: left;
+}
+
+input {
+    border: 1px solid #c9c9c9;
+    border-radius: 5px;
 }
 
 .name {
@@ -96,6 +155,7 @@ h1 {
 
 div.date-range input {
     width: 91px;
+
     /* height: 32px; */
 }
 
@@ -141,5 +201,11 @@ div.date-range span {
     background: #484848;
     border: none;
     color: white;
+}
+
+::v-deep div.vdp-datepicker input {
+    width: 95px;
+    border: 1px solid #c9c9c9;
+    border-radius: 5px;
 }
 </style>

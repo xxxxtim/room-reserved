@@ -1,7 +1,6 @@
 <template>
 <div>
-    <!-- <p>{{commentIds}}</p> -->
-    <Datepicker :inline="true" :format="dateFormat" :highlighted="highlight" />
+    <Datepicker :inline="true" :format="dateFormat" :highlighted="highlight" :disabled-dates="disabledDates" />
 </div>
 </template>
 
@@ -41,6 +40,13 @@ export default {
                 //     }
                 // },
                 includeDisabled: true // Highlight disabled dates
+            },
+            disabledDates: {
+                dates: [
+                    // new Date(2020, 9, 16),
+                    // new Date(2020, 9, 17),
+                    // new Date(2020, 9, 18)
+                ]
             }
         };
     },
@@ -48,9 +54,10 @@ export default {
         // console.log(this.commentIds);
         // this.commentIds.map((item, index) => console.log(typeof item.date));
         // 預約日期10/16 10/17 10/18
-        this.commentIds.map((item, index) =>
-            this.highlight.dates.push(new Date(item.date))
-        );
+        this.commentIds.map((item, index) => {
+            this.highlight.dates.push(new Date(item.date));
+            this.disabledDates.dates.push(new Date(item.date));
+        });
 
         console.table(this.highlight.dates);
     }
