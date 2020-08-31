@@ -24,18 +24,19 @@
                 <p>假日時段</p>
             </div>
             <div>
-                <p>1夜</p>
-                <p>1夜</p>
+                <!-- <p>{{countPrice('countOfNormalDay')}}夜</p> -->
+                <!-- <p>{{countPrice('countOfHoliday')}}夜</p> -->
             </div>
         </div>
         <div class="total-cost">
             <span>=</span>
-            <span>NT.2580</span>
+            <!-- <span>NT.2580</span> -->
+            <span>NT.{{countPrice('totalCost')}}</span>
         </div>
         <div class="button-container">
-            <button @click="resetTable" class="cancle">取消</button>
+            <button @click="countPrice" class="cancle">取消</button>
             <button class="confirm">確定預約</button>
-            {{inputTable.startDate.getDay()}}
+            <!-- {{inputTable.startDate.getDay()}} -->
         </div>
     </form>
 </div>
@@ -67,7 +68,8 @@ export default {
                 name: "",
                 tel: "",
                 startDate: "",
-                endDate: ""
+                endDate: "",
+                totalPrice: 0
             },
             dateFormat: "yyyy-MM-dd",
 
@@ -86,14 +88,70 @@ export default {
             this.disabledDates.dates.push(new Date(item.date));
         });
     },
+
+    computed: {
+        // countPrice() {
+        //     // getDate()=>轉換成幾號
+        //     // getDay()=>轉壞成星期幾
+        //     let countOfNormalDay = 0;
+        //     let countOfHoliday = 0;
+        //     let totalCost = 0;
+        //     let from = this.inputTable.startDate;
+        //     let to = this.inputTable.endDate;
+        //     while (from < to) {
+        //         let day = from.getDay();
+        //         if (day === 5 || day === 6 || day === 0) {
+        //             countOfHoliday += 1;
+        //         } else {
+        //             countOfNormalDay += 1;
+        //         }
+        //         from.setDate(from.getDate() + 1);
+        //     } //while
+        //     console.log(`countOfNormalDay=>${countOfNormalDay}`);
+        //     console.log(`countOfHoliday=>${countOfHoliday}`);
+        //     totalCost =
+        //         countOfNormalDay * this.normalDayPrice +
+        //         countOfHoliday * this.holidayPrice;
+        //     console.log(`totalCost=>${totalCost}`);
+        //     return (this.inputTable.totalPrice = totalCost);
+        // }
+    },
+
     methods: {
-        resetTable: () => {
+        resetTable() {
             this.inputTable.name = "";
             this.inputTable.tel = "";
             this.inputTable.startDate = "";
             this.inputTable.endDate = "";
         },
-        countPrice: () => {}
+        countPrice(input) {
+            // getDate()=>轉換成幾號
+            // getDay()=>轉壞成星期幾
+            let countOfNormalDay = 0;
+            let countOfHoliday = 0;
+            let totalCost = 0;
+            let from = this.inputTable.startDate;
+            let to = this.inputTable.endDate;
+            while (from < to) {
+                let day = from.getDay();
+                if (day === 5 || day === 6 || day === 0) {
+                    countOfHoliday += 1;
+                } else {
+                    countOfNormalDay += 1;
+                }
+                from.setDate(from.getDate() + 1);
+            } //while
+            console.log(`countOfNormalDay=>${countOfNormalDay}`);
+            console.log(`countOfHoliday=>${countOfHoliday}`);
+            totalCost =
+                countOfNormalDay * this.normalDayPrice +
+                countOfHoliday * this.holidayPrice;
+            console.log(`totalCost=>${totalCost}`);
+            // this.inputTable.totalPrice = totalCost;
+            if (input === "totalCost") {
+                return totalCost;
+            }
+        }
     }
 };
 </script>
