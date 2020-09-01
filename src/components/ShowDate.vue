@@ -1,6 +1,7 @@
 <template>
 <div>
     <Datepicker :inline="true" :format="dateFormat" :highlighted="highlight" :disabled-dates="disabledDates" />
+    <!-- {{test1}} -->
 </div>
 </template>
 
@@ -20,6 +21,8 @@ export default {
     data() {
         return {
             dateFormat: "yyyy-MM-dd",
+            test1: "",
+            test2: "",
 
             highlight: {
                 // to: new Date(2016, 0, 5), // Highlight all dates up to specific date

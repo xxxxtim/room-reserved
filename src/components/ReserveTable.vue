@@ -12,9 +12,11 @@
                 <input v-model="inputTable.name" type="text" placeholder="中/英文名" required />
                 <input v-model="inputTable.tel" type="tel" placeholder="09xx" required pattern="^09\d{8}$" title="請輸入手機號碼(10位數)" />
                 <div class="date-range">
-                    <Datepicker v-model="inputTable.startDate" format="yyyy-MM-dd" placeholder="入住日期" :highlighted="highlight" :disabled-dates="disabledDates" />
+                    <Datepicker v-model.lazy="startDate" format="yyyy-MM-dd" placeholder="入住日期" :highlighted="highlight" :disabled-dates="disabledDates" />
+                    <!-- {{startDate}} -->
                     <span>~</span>
-                    <Datepicker v-model="inputTable.endDate" format="yyyy-MM-dd" placeholder="退房日期" :highlighted="highlight" :disabled-dates="disabledDates" />
+                    <Datepicker @input="countPrice" v-model.lazy="endDate" format="yyyy-MM-dd" placeholder="退房日期" :highlighted="highlight" :disabled-dates="disabledDates" />
+                    <!-- {{endDate}} -->
                 </div>
             </div>
         </div>
@@ -24,19 +26,18 @@
                 <p>假日時段</p>
             </div>
             <div>
-                <!-- <p>{{countPrice('countOfNormalDay')}}夜</p> -->
-                <!-- <p>{{countPrice('countOfHoliday')}}夜</p> -->
+                <p>{{inputTable.normalDays}}夜</p>
+                <p>{{inputTable.weekDays}}夜</p>
             </div>
         </div>
         <div class="total-cost">
             <span>=</span>
             <!-- <span>NT.2580</span> -->
-            <span>NT.{{countPrice('totalCost')}}</span>
+            <span>NT.{{inputTable.totalPrice}}</span>
         </div>
         <div class="button-container">
             <button @click="countPrice" class="cancle">取消</button>
             <button class="confirm">確定預約</button>
-            <!-- {{inputTable.startDate.getDay()}} -->
         </div>
     </form>
 </div>
@@ -67,10 +68,12 @@ export default {
             inputTable: {
                 name: "",
                 tel: "",
-                startDate: "",
-                endDate: "",
-                totalPrice: 0
+                totalPrice: 0,
+                normalDays: 0,
+                weekDays: 0
             },
+            startDate: "",
+            endDate: "",
             dateFormat: "yyyy-MM-dd",
 
             highlight: {
@@ -89,49 +92,18 @@ export default {
         });
     },
 
-    computed: {
-        // countPrice() {
-        //     // getDate()=>轉換成幾號
-        //     // getDay()=>轉壞成星期幾
-        //     let countOfNormalDay = 0;
-        //     let countOfHoliday = 0;
-        //     let totalCost = 0;
-        //     let from = this.inputTable.startDate;
-        //     let to = this.inputTable.endDate;
-        //     while (from < to) {
-        //         let day = from.getDay();
-        //         if (day === 5 || day === 6 || day === 0) {
-        //             countOfHoliday += 1;
-        //         } else {
-        //             countOfNormalDay += 1;
-        //         }
-        //         from.setDate(from.getDate() + 1);
-        //     } //while
-        //     console.log(`countOfNormalDay=>${countOfNormalDay}`);
-        //     console.log(`countOfHoliday=>${countOfHoliday}`);
-        //     totalCost =
-        //         countOfNormalDay * this.normalDayPrice +
-        //         countOfHoliday * this.holidayPrice;
-        //     console.log(`totalCost=>${totalCost}`);
-        //     return (this.inputTable.totalPrice = totalCost);
-        // }
-    },
+    computed: {},
 
     methods: {
-        resetTable() {
-            this.inputTable.name = "";
-            this.inputTable.tel = "";
-            this.inputTable.startDate = "";
-            this.inputTable.endDate = "";
-        },
-        countPrice(input) {
+        countPrice() {
+            console.log(666);
             // getDate()=>轉換成幾號
             // getDay()=>轉壞成星期幾
             let countOfNormalDay = 0;
             let countOfHoliday = 0;
             let totalCost = 0;
-            let from = this.inputTable.startDate;
-            let to = this.inputTable.endDate;
+            let from = this.startDate;
+            let to = this.endDate;
             while (from < to) {
                 let day = from.getDay();
                 if (day === 5 || day === 6 || day === 0) {
@@ -141,16 +113,24 @@ export default {
                 }
                 from.setDate(from.getDate() + 1);
             } //while
-            console.log(`countOfNormalDay=>${countOfNormalDay}`);
-            console.log(`countOfHoliday=>${countOfHoliday}`);
+            // console.log(`countOfNormalDay=>${countOfNormalDay}`);
+            // console.log(`countOfHoliday=>${countOfHoliday}`);
             totalCost =
                 countOfNormalDay * this.normalDayPrice +
                 countOfHoliday * this.holidayPrice;
-            console.log(`totalCost=>${totalCost}`);
-            // this.inputTable.totalPrice = totalCost;
-            if (input === "totalCost") {
-                return totalCost;
-            }
+
+            console.log(`平日=>${countOfNormalDay}晚`);
+            this.inputTable.normalDays = countOfNormalDay;
+            // console.log(this.inputTable.normalDays);
+            console.log(`假日=>${countOfHoliday}晚`);
+            // this.inputTable.weekDays = countOfHoliday;
+            console.log(`總價格=>${totalCost}`);
+
+            this.inputTable.normalDays = countOfNormalDay;
+            this.inputTable.weekDays = countOfHoliday;
+            this.inputTable.totalPrice = totalCost;
+            // return totalCost;
+            // }
         }
     }
 };
@@ -167,8 +147,8 @@ form {
     background: white;
     position: absolute;
     z-index: 2;
-    top: 80%;
-    left: 35%;
+    top: 40%;
+    left: 50%;
 }
 
 p {
