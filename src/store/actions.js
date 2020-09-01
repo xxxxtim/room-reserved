@@ -26,7 +26,42 @@ export default {
         commit('setBooking', response);
 
     },
+    async postBooking({ commit }, { roomId, name, tel, booking }) {
+        // let data = JSON.stringify({
+        //     name: `${name}`,
+        //     tel: `${tel}`,
+        //     data: `${booking}`
 
+        // })
+        // const response = await axios
+        //     .post(`https://challenge.thef2e.com/api/thef2e2019/stage6/room/${roomId}`, {
+        //         headers: {
+        //             Authorization:
+        //                 "Bearer IOdf0UIIYuWAaUqB84OcRb0NJYEBDWYUFygTLF2N8MV1WD5J6GK4HDHnGwUL"
+        //         },
+        //         data: data
+        //     })
+        //     .then((response) => {
+        //         console.log(JSON.stringify(response.data))
+        //     })
+        //     .catch((error) => console.log(error))
+
+
+        console.log(roomId, name, tel, booking)
+        await axios.post(`https://challenge.thef2e.com/api/thef2e2019/stage6/room/${roomId}`, {
+
+            name: `${name}`,
+            tel: `${tel}`,
+            date: booking
+
+        }, {
+            headers: {
+                Authorization:
+                    "Bearer IOdf0UIIYuWAaUqB84OcRb0NJYEBDWYUFygTLF2N8MV1WD5J6GK4HDHnGwUL"
+
+            }
+        })
+    }
 
 
 

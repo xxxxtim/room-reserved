@@ -144,7 +144,7 @@
             <button @click="isShowReservation=!isShowReservation" class="reservation">預約時段</button>
         </div>
     </div>
-    <ReserveTable :normalDayPrice="getRoomDetails[0].normalDayPrice" :holidayPrice="getRoomDetails[0].holidayPrice" :commentIds="getBooking" v-if="isShowReservation" />
+    <ReserveTable :roomId="this.$route.query.cardId" :normalDayPrice="getRoomDetails[0].normalDayPrice" :holidayPrice="getRoomDetails[0].holidayPrice" :commentIds="getBooking" v-if="isShowReservation" />
 </div>
 </template>
 

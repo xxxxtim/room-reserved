@@ -36,8 +36,8 @@
             <span>NT.{{inputTable.totalPrice}}</span>
         </div>
         <div class="button-container">
-            <button @click="countPrice" class="cancle">取消</button>
-            <button class="confirm">確定預約</button>
+            <button @click="reload" class="cancle">取消</button>
+            <button @click="postTable" class="confirm">確定預約</button>
         </div>
     </form>
 </div>
@@ -45,11 +45,16 @@
 
 <script>
 import Datepicker from "vuejs-datepicker";
+import store from "@/store";
 export default {
     components: {
         Datepicker
     },
     props: {
+        roomId: {
+            type: String,
+            required: true
+        },
         commentIds: {
             type: Array,
             required: true
@@ -75,6 +80,7 @@ export default {
             startDate: "",
             endDate: "",
             dateFormat: "yyyy-MM-dd",
+            booking: [],
 
             highlight: {
                 dates: [],
@@ -96,7 +102,6 @@ export default {
 
     methods: {
         countPrice() {
-            console.log(666);
             // getDate()=>轉換成幾號
             // getDay()=>轉壞成星期幾
             let countOfNormalDay = 0;
@@ -112,25 +117,42 @@ export default {
                     countOfNormalDay += 1;
                 }
                 from.setDate(from.getDate() + 1);
+
+                // push reservedDate to booking array
+                this.booking.push(
+                    `${from.getFullYear()}-${from.getMonth() + 1}-${from.getDate() - 1}`
+                );
+                console.table(this.booking);
             } //while
-            // console.log(`countOfNormalDay=>${countOfNormalDay}`);
-            // console.log(`countOfHoliday=>${countOfHoliday}`);
             totalCost =
                 countOfNormalDay * this.normalDayPrice +
                 countOfHoliday * this.holidayPrice;
 
             console.log(`平日=>${countOfNormalDay}晚`);
-            this.inputTable.normalDays = countOfNormalDay;
-            // console.log(this.inputTable.normalDays);
             console.log(`假日=>${countOfHoliday}晚`);
-            // this.inputTable.weekDays = countOfHoliday;
             console.log(`總價格=>${totalCost}`);
 
             this.inputTable.normalDays = countOfNormalDay;
             this.inputTable.weekDays = countOfHoliday;
             this.inputTable.totalPrice = totalCost;
-            // return totalCost;
             // }
+        },
+        postTable() {
+            store.dispatch("postBooking", {
+                roomId: this.roomId,
+                name: this.inputTable.name,
+                tel: this.inputTable.tel,
+                booking: this.booking
+            });
+            // console.log(
+            //     // typeof this.roomId,
+            //     // typeof this.inputTable.name,
+            //     // typeof this.inputTable.tel
+            //     this.booking
+            // );
+        },
+        reload() {
+            this.$router.go(0);
         }
     }
 };
