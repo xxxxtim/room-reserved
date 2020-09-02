@@ -12,10 +12,10 @@
                 <input v-model="inputTable.name" type="text" placeholder="中/英文名" required />
                 <input v-model="inputTable.tel" type="tel" placeholder="09xx" required pattern="^09\d{8}$" title="請輸入手機號碼(10位數)" />
                 <div class="date-range">
-                    <Datepicker v-model.lazy="startDate" format="yyyy-MM-dd" placeholder="入住日期" :highlighted="highlight" :disabled-dates="disabledDates" />
+                    <Datepicker @input="countPrice" v-model.lazy="startDate" name="startDate" format="yyyy-MM-dd" placeholder="入住日期" :highlighted="highlight" :disabled-dates="disabledDates" />
                     <!-- {{startDate}} -->
                     <span>~</span>
-                    <Datepicker @input="countPrice" v-model.lazy="endDate" format="yyyy-MM-dd" placeholder="退房日期" :highlighted="highlight" :disabled-dates="disabledDates" />
+                    <Datepicker @input="countPrice" v-model.lazy="endDate" name="endDate" format="yyyy-MM-dd" placeholder="退房日期" :highlighted="highlight" :disabled-dates="disabledDates" />
                     <!-- {{endDate}} -->
                 </div>
             </div>
@@ -104,11 +104,13 @@ export default {
         countPrice() {
             // getDate()=>轉換成幾號
             // getDay()=>轉壞成星期幾
+            this.booking.length = 0;
             let countOfNormalDay = 0;
             let countOfHoliday = 0;
             let totalCost = 0;
-            let from = this.startDate;
-            let to = this.endDate;
+            let from = new Date(this.startDate);
+
+            let to = new Date(this.endDate);
             while (from < to) {
                 let day = from.getDay();
                 if (day === 5 || day === 6 || day === 0) {
@@ -119,15 +121,17 @@ export default {
                 from.setDate(from.getDate() + 1);
 
                 // push reservedDate to booking array
-                this.booking.push(
-                    `${from.getFullYear()}-${from.getMonth() + 1}-${from.getDate() - 1}`
-                );
-                console.table(this.booking);
+                // step1 轉換時間格式
+                // step2 push booking
+                this.booking.push(this.formatDate(from));
             } //while
             totalCost =
                 countOfNormalDay * this.normalDayPrice +
                 countOfHoliday * this.holidayPrice;
 
+            console.log(this.startDate, from);
+            console.log(this.endDate, to);
+            console.table(this.booking);
             console.log(`平日=>${countOfNormalDay}晚`);
             console.log(`假日=>${countOfHoliday}晚`);
             console.log(`總價格=>${totalCost}`);
@@ -136,6 +140,16 @@ export default {
             this.inputTable.weekDays = countOfHoliday;
             this.inputTable.totalPrice = totalCost;
             // }
+        },
+
+        formatDate(from) {
+            let y = from.getFullYear();
+            let m = from.getMonth() + 1;
+            let d = from.getDate() - 1;
+            m = m < 10 ? "0" + m : m;
+            d = d < 10 ? "0" + d : d;
+            console.log(y + "-" + m + "-" + d);
+            return y + "-" + m + "-" + d;
         },
         postTable() {
             store.dispatch("postBooking", {
