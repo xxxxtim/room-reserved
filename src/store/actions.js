@@ -40,6 +40,8 @@ export default {
                         "Bearer IOdf0UIIYuWAaUqB84OcRb0NJYEBDWYUFygTLF2N8MV1WD5J6GK4HDHnGwUL"
                 }
             })
+            .then((res) => console.log(res.data))
+            .catch((error) => console.log(error))
     }
 
 

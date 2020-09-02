@@ -37,7 +37,7 @@
         </div>
         <div class="button-container">
             <button @click="reload" class="cancle">取消</button>
-            <button @click="postTable" class="confirm">確定預約</button>
+            <button @click.prevent="postTable" class="confirm">確定預約</button>
         </div>
     </form>
 </div>
@@ -129,7 +129,7 @@ export default {
                 countOfNormalDay * this.normalDayPrice +
                 countOfHoliday * this.holidayPrice;
 
-            console.log(this.startDate, from);
+            console.log(typeof this.startDate);
             console.log(this.endDate, to);
             console.table(this.booking);
             console.log(`平日=>${countOfNormalDay}晚`);
@@ -158,12 +158,6 @@ export default {
                 tel: this.inputTable.tel,
                 booking: this.booking
             });
-            // console.log(
-            //     // typeof this.roomId,
-            //     // typeof this.inputTable.name,
-            //     // typeof this.inputTable.tel
-            //     this.booking
-            // );
         },
         reload() {
             this.$router.go(0);
