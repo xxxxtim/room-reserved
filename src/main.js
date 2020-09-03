@@ -26,7 +26,8 @@ import {
   faMountain,
   faSmokingBan,
   faBaby,
-  faDog
+  faDog,
+  faCheckCircle,
 
 
 
@@ -52,7 +53,8 @@ library.add(
   faMountain,
   faSmokingBan,
   faBaby,
-  faDog
+  faDog,
+  faCheckCircle
 
 
 

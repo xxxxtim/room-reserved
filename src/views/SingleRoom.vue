@@ -144,7 +144,8 @@
             <button @click="isShowReservation=!isShowReservation" class="reservation">預約時段</button>
         </div>
     </div>
-    <ReserveTable :roomId="this.$route.query.cardId" :normalDayPrice="getRoomDetails[0].normalDayPrice" :holidayPrice="getRoomDetails[0].holidayPrice" :commentIds="getBooking" v-if="isShowReservation" />
+    <ReserveTable @isShowResult="isShowResult" v-on:cancleStatus="changeReservation" v-if="isShowReservation" :roomId="this.$route.query.cardId" :normalDayPrice="getRoomDetails[0].normalDayPrice" :holidayPrice="getRoomDetails[0].holidayPrice" :commentIds="getBooking" />
+    <ReserveResult v-if="ShowResults" />
 </div>
 </template>
 
@@ -152,6 +153,7 @@
 import RoomCarousel from "@/components/RoomCarousel.vue";
 import ShowDate from "@/components/ShowDate.vue";
 import ReserveTable from "@/components/ReserveTable.vue";
+import ReserveResult from "@/components/ReserveResult.vue";
 import Datepicker from "vuejs-datepicker";
 import VueHotelDatepicker from "@northwalker/vue-hotel-datepicker";
 import store from "@/store";
@@ -165,12 +167,14 @@ export default {
         RoomCarousel,
         Datepicker,
         ShowDate,
-        ReserveTable
+        ReserveTable,
+        ReserveResult
     },
     data() {
         return {
             isShowCarousel: false,
-            isShowReservation: false
+            isShowReservation: false,
+            ShowResults: false
             // test: [1, 2, 3]
         };
     },
@@ -181,6 +185,15 @@ export default {
     },
     computed: {
         ...mapGetters(["getRoomDetails", "getBooking"])
+    },
+    methods: {
+        changeReservation(status) {
+            this.isShowReservation = !status;
+        },
+        isShowResult(data) {
+            this.ShowResults = !data;
+            console.log(data);
+        }
     }
 };
 </script>

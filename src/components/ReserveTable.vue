@@ -1,5 +1,5 @@
 <template>
-<div>
+<div v-if="isShowResult">
     <form>
         <h1>預約時段</h1>
         <div class="form-container">
@@ -36,7 +36,7 @@
             <span>NT.{{inputTable.totalPrice}}</span>
         </div>
         <div class="button-container">
-            <button @click="reload" class="cancle">取消</button>
+            <button @click.prevent="emit2singleRoom" class="cancle">取消</button>
             <button @click.prevent="postTable" class="confirm">確定預約</button>
         </div>
     </form>
@@ -70,6 +70,7 @@ export default {
     },
     data() {
         return {
+            cancleStatus: false,
             inputTable: {
                 name: "",
                 tel: "",
@@ -77,6 +78,7 @@ export default {
                 normalDays: 0,
                 weekDays: 0
             },
+            isShowResult: true,
             startDate: "",
             endDate: "",
             dateFormat: "yyyy-MM-dd",
@@ -152,15 +154,20 @@ export default {
             return y + "-" + m + "-" + d;
         },
         postTable() {
-            store.dispatch("postBooking", {
-                roomId: this.roomId,
-                name: this.inputTable.name,
-                tel: this.inputTable.tel,
-                booking: this.booking
-            });
+            // post table to serve
+            // store.dispatch("postBooking", {
+            //     roomId: this.roomId,
+            //     name: this.inputTable.name,
+            //     tel: this.inputTable.tel,
+            //     booking: this.booking
+            // });
+            console.log(12);
+            this.isShowResult = false;
+            this.$emit("isShowResult", this.isShowResult);
         },
-        reload() {
-            this.$router.go(0);
+        emit2singleRoom() {
+            this.cancleStatus = !this.cancleStatus;
+            this.$emit("cancleStatus", this.cancleStatus);
         }
     }
 };
