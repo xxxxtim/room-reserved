@@ -13,12 +13,12 @@ export default {
         state.booking = response.data.booking
 
     },
-    setResults({ state }, response) {
+    postSuccess({ state }, response) {
         // console.log('response', response.data)
-        state.statusOfPost = true
+        state.statusOfPost = 'success'
     },
-    resetResults({ state }) {
-        state.statusOfPost = false
+    postFail({ state }) {
+        state.statusOfPost = 'failure'
     }
 
 

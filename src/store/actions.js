@@ -1,6 +1,9 @@
 import axios from 'axios'
 
 export default {
+
+    // 重複網址拉出來
+    // header
     // 所有房型粗略資料
     async getRoomsStyleAPI({ commit }) {
         const response = await axios
@@ -26,6 +29,8 @@ export default {
         commit('setBooking', response);
 
     },
+
+    // async 和思then 寫法要改
     async postBooking({ commit }, { roomId, name, tel, booking }) {
         console.log(roomId, name, tel, booking)
         await axios.post(`https://challenge.thef2e.com/api/thef2e2019/stage6/room/${roomId}`,
@@ -43,10 +48,15 @@ export default {
             .then((res) => {
 
                 // console.log(res.data);
-                commit('setResults', res);
+                commit('postSuccess', res);
             }
             )
-            .catch((error) => console.log(error))
+            .catch((error) => {
+                commit('postFail', error)
+                // console.log('yachen666')
+                console.log(error)
+            }
+            )
     }
 
 

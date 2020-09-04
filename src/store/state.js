@@ -3,6 +3,6 @@ export default {
         roomsStyles: [],
         roomDetails: [],
         booking: [],
-        statusOfPost: false,
+        statusOfPost: '',
     }
 }

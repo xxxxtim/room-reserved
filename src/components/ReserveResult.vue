@@ -1,7 +1,7 @@
 <template>
 <div>
     <!-- 預約成功 -->
-    <div v-if="(isShowResult)&&(getStatusOfPost)">
+    <div v-if="getStatusOfPost==='success'">
         <div class="resultContainer">
             <h1>預約成功</h1>
             <div class="tickContainer">
@@ -13,7 +13,7 @@
         </div>
     </div>
     <!-- 預約失敗 -->
-    <div v-if="(isShowResult)&&(!getStatusOfPost)">
+    <div v-if="getStatusOfPost==='failure'">
         <div class="resultContainer">
             <h1>預約失敗</h1>
             <p>預約時間以被人預定</p>
@@ -32,8 +32,8 @@ import {
 export default {
     data() {
         return {
-            cancleStatus: false,
-            isShowResult: true
+            cancleStatus: false
+            // isShowResult: true
         };
     },
     computed: {
@@ -45,11 +45,11 @@ export default {
         //     this.$emit("cancleStatus", this.cancleStatus);
         // }
         reload() {
-            this.isShowResult = !this.isShowResult;
+            // this.isShowResult = !this.isShowResult;
             this.$router.go(0);
         },
         toHome() {
-            this.isShowResult = !this.isShowResult;
+            // this.isShowResult = !this.isShowResult;
             // this.commit("setResults");
             this.$router.push({
                 name: "Home"

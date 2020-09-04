@@ -9,13 +9,13 @@
                 <p>預約起訖</p>
             </div>
             <div class="input-container">
-                <input v-model="inputTable.name" type="text" placeholder="中/英文名" required />
-                <input v-model="inputTable.tel" type="tel" placeholder="09xx" required pattern="^09\d{8}$" title="請輸入手機號碼(10位數)" />
+                <input v-model="inputTable.name" type="text" placeholder="中/英文名" required onkeypress="if (event.keyCode == 13) {return false;}" />
+                <input v-model="inputTable.tel" type="tel" placeholder="09xx" required pattern="^09\d{8}$" title="請輸入手機號碼(10位數)" onkeypress="if (event.keyCode == 13) {return false;}" />
                 <div class="date-range">
-                    <Datepicker @input="countPrice" v-model.lazy="startDate" name="startDate" format="yyyy-MM-dd" placeholder="入住日期" :highlighted="highlight" :disabled-dates="disabledDates" />
+                    <Datepicker @input="countPrice" v-model.lazy="startDate" name="startDate" format="yyyy-MM-dd" placeholder="入住日期" :highlighted="highlight" :disabled-dates="disabledDates" onkeypress="if (event.keyCode == 13) {return false;}" />
                     <!-- {{startDate}} -->
                     <span>~</span>
-                    <Datepicker @input="countPrice" v-model.lazy="endDate" name="endDate" format="yyyy-MM-dd" placeholder="退房日期" :highlighted="highlight" :disabled-dates="disabledDates" />
+                    <Datepicker @input="countPrice" v-model.lazy="endDate" name="endDate" format="yyyy-MM-dd" placeholder="退房日期" :highlighted="highlight" :disabled-dates="disabledDates" onkeypress="if (event.keyCode == 13) {return false;}" />
                     <!-- {{endDate}} -->
                 </div>
             </div>
