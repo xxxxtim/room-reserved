@@ -12,6 +12,13 @@ export default {
         console.log(response.data)
         state.booking = response.data.booking
 
+    },
+    setResults({ state }, response) {
+        // console.log('response', response.data)
+        state.statusOfPost = true
+    },
+    resetResults({ state }) {
+        state.statusOfPost = false
     }
 
 

@@ -2,6 +2,7 @@ export default {
     state: {
         roomsStyles: [],
         roomDetails: [],
-        booking: []
+        booking: [],
+        statusOfPost: false,
     }
 }

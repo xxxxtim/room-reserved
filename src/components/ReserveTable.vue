@@ -94,15 +94,25 @@ export default {
         };
     },
     created() {
-        this.commentIds.map((item, index) => {
-            this.highlight.dates.push(new Date(item.date));
-            this.disabledDates.dates.push(new Date(item.date));
-        });
+        // this.commentIds.map((item, index) => {
+        //     this.highlight.dates.push(new Date(item.date));
+        //     this.disabledDates.dates.push(new Date(item.date));
+        // });
+        this.refreshDatePicker();
     },
 
     computed: {},
 
     methods: {
+        refreshDatePicker() {
+            this.highlight.dates.length = 0;
+            this.disabledDates.dates.length = 0;
+            this.commentIds.map((item, index) => {
+                this.highlight.dates.push(new Date(item.date));
+                this.disabledDates.dates.push(new Date(item.date));
+            });
+            console.log("happy new yaer");
+        },
         countPrice() {
             // getDate()=>轉換成幾號
             // getDay()=>轉壞成星期幾
@@ -155,19 +165,21 @@ export default {
         },
         postTable() {
             // post table to serve
-            // store.dispatch("postBooking", {
-            //     roomId: this.roomId,
-            //     name: this.inputTable.name,
-            //     tel: this.inputTable.tel,
-            //     booking: this.booking
-            // });
-            console.log(12);
+            store.dispatch("postBooking", {
+                roomId: this.roomId,
+                name: this.inputTable.name,
+                tel: this.inputTable.tel,
+                booking: this.booking
+            });
             this.isShowResult = false;
             this.$emit("isShowResult", this.isShowResult);
         },
         emit2singleRoom() {
             this.cancleStatus = !this.cancleStatus;
             this.$emit("cancleStatus", this.cancleStatus);
+            // get data and refresh datePicker
+            store.dispatch("getRoomsStyleAPI");
+            this.refreshDatePicker();
         }
     }
 };

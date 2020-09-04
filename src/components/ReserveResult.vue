@@ -1,33 +1,43 @@
 <template>
-<div v-if="isShowResult" class="resultContainer">
+<div>
     <!-- 預約成功 -->
-    <div>
-        <h1>預約成功</h1>
-        <div class="tickContainer">
-            <font-awesome-icon icon="check-circle" class="tick" />
-        </div>
-        <div class="btnContainer">
-            <button @click="toHome">回頁面</button>
+    <div v-if="(isShowResult)&&(getStatusOfPost)">
+        <div class="resultContainer">
+            <h1>預約成功</h1>
+            <div class="tickContainer">
+                <font-awesome-icon icon="check-circle" class="tick" />
+            </div>
+            <div class="btnContainer">
+                <button @click.prevent="reload">回頁面</button>
+            </div>
         </div>
     </div>
     <!-- 預約失敗 -->
-    <!-- <div>
-        <h1>預約失敗</h1>
-        <p>預約時間以被人預定</p>
-        <div class="btnContainer">
-            <button @click.prevent="reload">返回</button>
+    <div v-if="(isShowResult)&&(!getStatusOfPost)">
+        <div class="resultContainer">
+            <h1>預約失敗</h1>
+            <p>預約時間以被人預定</p>
+            <div class="btnContainer">
+                <button @click.prevent="reload">返回</button>
+            </div>
         </div>
-    </div>-->
+    </div>
 </div>
 </template>
 
 <script>
+import {
+    mapGetters
+} from "vuex";
 export default {
     data() {
         return {
             cancleStatus: false,
             isShowResult: true
         };
+    },
+    computed: {
+        ...mapGetters(["getStatusOfPost"])
     },
     methods: {
         // emit2singleRoom() {
@@ -40,6 +50,7 @@ export default {
         },
         toHome() {
             this.isShowResult = !this.isShowResult;
+            // this.commit("setResults");
             this.$router.push({
                 name: "Home"
             });
