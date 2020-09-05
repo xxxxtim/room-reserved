@@ -1,5 +1,6 @@
 <template>
 <div class="main">
+    <Brand />
     <div :class="{reservedToggle:isShowReservation}" class="banner-container">
         <!-- <p>{{getRoomDetails[0].imageUrl}}</p> -->
         <!-- props測試 -->
@@ -154,6 +155,7 @@ import RoomCarousel from "@/components/RoomCarousel.vue";
 import ShowDate from "@/components/ShowDate.vue";
 import ReserveTable from "@/components/ReserveTable.vue";
 import ReserveResult from "@/components/ReserveResult.vue";
+import Brand from "@/components/Brand.vue";
 import Datepicker from "vuejs-datepicker";
 import VueHotelDatepicker from "@northwalker/vue-hotel-datepicker";
 import store from "@/store";
@@ -168,7 +170,8 @@ export default {
         Datepicker,
         ShowDate,
         ReserveTable,
-        ReserveResult
+        ReserveResult,
+        Brand
     },
     data() {
         return {
