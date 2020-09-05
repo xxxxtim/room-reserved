@@ -142,7 +142,9 @@
             <!-- <Datepicker placeholder="顯示90天內預約狀態" :inline="true" :minimumView="'day'" :maximumView="'day'" disabled="true" /> -->
             <!-- 把訂房資訊props到日曆上 -->
             <ShowDate :commentIds="getBooking" />
-            <button @click="isShowReservation=!isShowReservation" class="reservation">預約時段</button>
+            <div>
+                <button @click="isShowReservation=!isShowReservation" class="reservation">預約時段</button>
+            </div>
         </div>
     </div>
     <ReserveTable @isShowResult="isShowResult" v-on:cancleStatus="changeReservation" v-if="isShowReservation" :roomId="this.$route.query.cardId" :normalDayPrice="getRoomDetails[0].normalDayPrice" :holidayPrice="getRoomDetails[0].holidayPrice" :commentIds="getBooking" />
