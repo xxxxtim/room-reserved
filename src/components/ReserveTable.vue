@@ -194,10 +194,10 @@ form {
     justify-content: center;
     box-shadow: 0 2px 4px 0 rgba(0, 0, 0, 0.5);
     background: white;
-    position: absolute;
+    position: fixed;
     z-index: 2;
-    top: 40%;
-    left: 50%;
+    bottom: 20%;
+    left: 30%;
 }
 
 p {

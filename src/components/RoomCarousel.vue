@@ -93,12 +93,12 @@ export default {
 .banner {
     width: 60%;
     position: absolute;
-    top: 11px;
+    top: 120px;
     left: 20%;
     z-index: 1;
 }
 
 ::v-deep img {
-    height: 560px;
+    height: 460px;
 }
 </style>

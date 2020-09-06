@@ -80,10 +80,10 @@ p {
     display: flex;
     flex-direction: column;
     justify-content: space-evenly;
-    position: absolute;
+    position: fixed;
     padding: 0px 43px;
-    bottom: 45%;
-    left: 40%;
+    bottom: 30%;
+    left: 30%;
 }
 
 // .tick {

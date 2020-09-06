@@ -142,9 +142,8 @@
             <!-- <Datepicker placeholder="顯示90天內預約狀態" :inline="true" :minimumView="'day'" :maximumView="'day'" disabled="true" /> -->
             <!-- 把訂房資訊props到日曆上 -->
             <ShowDate :commentIds="getBooking" />
-            <div>
-                <button @click="isShowReservation=!isShowReservation" class="reservation">預約時段</button>
-            </div>
+            <div class="btn-shadow" />
+            <button @click="isShowReservation=!isShowReservation" class="reservation">預約時段</button>
         </div>
     </div>
     <ReserveTable @isShowResult="isShowResult" v-on:cancleStatus="changeReservation" v-if="isShowReservation" :roomId="this.$route.query.cardId" :normalDayPrice="getRoomDetails[0].normalDayPrice" :holidayPrice="getRoomDetails[0].holidayPrice" :commentIds="getBooking" />
@@ -259,6 +258,7 @@ export default {
     flex-direction: row;
     padding: 65px;
     position: relative;
+    flex-wrap: wrap;
     // 彈跳視窗
     // background-color: gray;
     // opacity: 0.7;
@@ -365,6 +365,20 @@ div.time-container p {
     height: 53px;
     border: none;
     margin-top: 26px;
+}
+
+.btn-shadow {
+    width: 118px;
+    height: 56px;
+    z-index: -1;
+    top: 85px;
+    left: 100px;
+    position: relative;
+    background-image: repeating-linear-gradient(45deg,
+            transparent,
+            transparent 4%,
+            black 1%,
+            black 5%);
 }
 
 // datepicker
