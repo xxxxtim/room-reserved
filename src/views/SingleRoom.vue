@@ -4,7 +4,7 @@
     <div :class="{reservedToggle:isShowReservation}" class="banner-container">
         <!-- <p>{{getRoomDetails[0].imageUrl}}</p> -->
         <!-- props測試 -->
-        <RoomCarousel v-if="isShowCarousel" :imgUrl="getRoomDetails[0].imageUrl" />
+        <RoomCarousel v-if="isShowCarousel" :imgUrl="getRoomDetails[0].imageUrl||0" />
         <div @click="isShowCarousel=!isShowCarousel" :class="{ bannerDark: isShowCarousel }" class="banner-left" :style="{ backgroundImage: 'url(' + getRoomDetails[0].imageUrl[0] + ')' }" />
         <div :class="{ bannerDark: isShowCarousel }">
             <div @click="isShowCarousel=!isShowCarousel" class="banner-right" :style="{ backgroundImage: 'url(' + getRoomDetails[0].imageUrl[1] + ')'}" />
