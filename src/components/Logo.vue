@@ -66,6 +66,7 @@ $color: #ffffff;
     border-left: 2px $color;
     font-size: 24px;
     text-align: left;
+    border-left: 2px white solid;
 }
 
 .link {
