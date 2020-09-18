@@ -113,6 +113,7 @@ export default {
     flex-direction: row;
     flex-wrap: wrap;
     justify-content: center;
+    max-width: 1024px;
 }
 
 .room-container {

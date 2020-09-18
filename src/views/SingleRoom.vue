@@ -4,7 +4,7 @@
     <div :class="{reservedToggle:isShowReservation}" class="banner-container">
         <!-- <p>{{getRoomDetails[0].imageUrl}}</p> -->
         <!-- props測試 -->
-        <RoomCarousel v-if="isShowCarousel" :imgUrl="getRoomDetails[0].imageUrl||0" />
+        <RoomCarousel v-if="isShowCarousel" :imgUrl="getRoomDetails[0].imageUrl || []" />
         <div @click="isShowCarousel=!isShowCarousel" :class="{ bannerDark: isShowCarousel }" class="banner-left" :style="{ backgroundImage: 'url(' + getRoomDetails[0].imageUrl[0] + ')' }" />
         <div :class="{ bannerDark: isShowCarousel }">
             <div @click="isShowCarousel=!isShowCarousel" class="banner-right" :style="{ backgroundImage: 'url(' + getRoomDetails[0].imageUrl[1] + ')'}" />
@@ -182,10 +182,20 @@ export default {
             // test: [1, 2, 3]
         };
     },
-    created() {
-        // console.log(typeof this.$route.query.cardId);
-        store.dispatch("getAllRoomDetails", this.$route.query.cardId);
-        console.log(this.getBooking);
+    // created() {
+    //     // console.log(typeof this.$route.query.cardId);
+    //     store.dispatch("getAllRoomDetails", this.$route.query.cardId);
+    //     console.log(JSON.stringify(this.getRoomDetails));
+    //     console.log(JSON.stringify(this.getBooking));
+    // },
+
+    // titan 寫法 確保資料拿到再loading進網頁
+    async beforeRouteEnter(to, from, next) {
+        await store.dispatch("getAllRoomDetails", to.query.cardId);
+        next(vm => {
+            console.log(vm.getRoomDetails);
+            console.log(vm.getBooking);
+        });
     },
     computed: {
         ...mapGetters(["getRoomDetails", "getBooking"])
