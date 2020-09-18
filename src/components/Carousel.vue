@@ -99,6 +99,6 @@ export default {
 ::v-deep img {
     height: 750px;
     width: 100%;
-    object-fit: fill;
+    object-fit: cover;
 }
 </style>
