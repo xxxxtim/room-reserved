@@ -2,7 +2,10 @@
 <div class="wrapper">
     <!-- logo-container -->
     <div>
-        <div class="logo-container">white space</div>
+        <div class="logo-container">
+            <div class="logo-shadowTop" />
+            <div class="logo-shadowLeft" />white space
+        </div>
     </div>
     <div class="logo-context">
         <div class="left-container">
@@ -36,6 +39,7 @@ $logo-length: 148px;
 $color: #ffffff;
 
 .logo-container {
+    position: relative;
     width: $logo-length;
     height: $logo-length;
     display: flex;
@@ -55,6 +59,35 @@ $color: #ffffff;
     align-items: center;
     margin-top: 30px;
     color: $color;
+}
+
+.logo-shadowTop {
+    width: 150px;
+    height: 10px;
+    position: absolute;
+    z-index: 1;
+    top: -12px;
+    left: -19px;
+    right: 0;
+    background-image: repeating-linear-gradient(45deg,
+            transparent,
+            transparent 3%,
+            white 2%,
+            white 4%);
+}
+
+.logo-shadowLeft {
+    width: 13px;
+    height: 125px;
+    position: absolute;
+    z-index: 1;
+    top: -3px;
+    left: -17px;
+    background-image: repeating-linear-gradient(45deg,
+            transparent,
+            transparent 3%,
+            white 5%,
+            white 2%);
 }
 
 .left-container {
