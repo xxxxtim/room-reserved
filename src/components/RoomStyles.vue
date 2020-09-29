@@ -31,7 +31,7 @@ export default {
         };
     },
     created() {
-        console.log(this.getRoomsStyles);
+        // console.log(this.getRoomsStyles);
     },
     computed: {
         ...mapGetters(["getRoomsStyles"])

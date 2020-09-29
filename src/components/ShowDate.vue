@@ -62,7 +62,7 @@ export default {
             this.disabledDates.dates.push(new Date(item.date));
         });
 
-        console.table(this.highlight.dates);
+        // console.table(this.highlight.dates);
     }
 };
 </script>

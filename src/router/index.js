@@ -13,8 +13,12 @@ const routes = [
     name: 'Home',
     component: Home,
     beforeEnter: (to, from, next) => {
-      store.dispatch("getRoomsStyleAPI");
-      next();
+      if (from.name === 'RoomDetails')
+        next();
+      else {
+        store.dispatch("getRoomsStyleAPI");
+        next();
+      }
     }
   },
   {
