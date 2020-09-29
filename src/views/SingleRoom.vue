@@ -2,8 +2,6 @@
 <div class="main">
     <Brand />
     <div :class="{reservedToggle:isShowReservation}" class="banner-container">
-        <!-- <p>{{getRoomDetails[0].imageUrl}}</p> -->
-        <!-- props測試 -->
         <RoomCarousel v-if="isShowCarousel" :imgUrl="getRoomDetails[0].imageUrl || []" />
         <div @click="isShowCarousel=!isShowCarousel" :class="{ bannerDark: isShowCarousel }" class="banner-left" :style="{ backgroundImage: 'url(' + getRoomDetails[0].imageUrl[0] + ')' }" />
         <div :class="{ bannerDark: isShowCarousel }">
@@ -138,9 +136,6 @@
             <p>假日(五~日)</p>
         </div>
         <div class="msg-right">
-            <!-- <VueHotelDatepicker placeholder="請選擇預約日期" /> -->
-            <!-- <Datepicker placeholder="顯示90天內預約狀態" :inline="true" :minimumView="'day'" :maximumView="'day'" disabled="true" /> -->
-            <!-- 把訂房資訊props到日曆上 -->
             <ShowDate :commentIds="getBooking" />
             <div class="btn-shadow" />
             <button @click="isShowReservation=!isShowReservation" class="reservation">預約時段</button>
@@ -179,24 +174,17 @@ export default {
             isShowCarousel: false,
             isShowReservation: false,
             ShowResults: false
-            // test: [1, 2, 3]
         };
     },
-    // created() {
-    //     // console.log(typeof this.$route.query.cardId);
-    //     store.dispatch("getAllRoomDetails", this.$route.query.cardId);
-    //     console.log(JSON.stringify(this.getRoomDetails));
-    //     console.log(JSON.stringify(this.getBooking));
-    // },
 
     // titan 寫法 確保資料拿到再loading進網頁
-    async beforeRouteEnter(to, from, next) {
-        await store.dispatch("getAllRoomDetails", to.query.cardId);
-        next(vm => {
-            console.log(vm.getRoomDetails);
-            console.log(vm.getBooking);
-        });
-    },
+    // async beforeRouteEnter(to, from, next) {
+    //     await store.dispatch("getAllRoomDetails", to.query.cardId);
+    //     next(vm => {
+    //         console.log(vm.getRoomDetails);
+    //         console.log(vm.getBooking);
+    //     });
+    // },
     computed: {
         ...mapGetters(["getRoomDetails", "getBooking"])
     },
@@ -247,7 +235,6 @@ export default {
     display: flex;
     flex-direction: row;
     color: #6c757d;
-    // width: 482px;
     height: 220px;
     justify-content: space-around;
     align-items: center;
@@ -269,10 +256,6 @@ export default {
     padding: 65px;
     position: relative;
     flex-wrap: wrap;
-    // 彈跳視窗
-    // background-color: gray;
-    // opacity: 0.7;
-    // filter: brightness(0.5);
 }
 
 .reservedToggle {
@@ -318,8 +301,6 @@ export default {
 h1 {
     font-size: 2.5rem;
     font-family: NotoSansCJKtc-Medium;
-    /* font-size: 36px; */
-    // color: #000000;
     letter-spacing: 3.76px;
 }
 
@@ -345,9 +326,7 @@ div.time-container p {
 .msg-middle p:nth-child(1) {
     font-family: NotoSansCJKtc-Light;
     font-size: 30px;
-    // color: #000000;
     letter-spacing: 3.13px;
-    // text-align: right;
     line-height: 27px;
 }
 
@@ -390,11 +369,4 @@ div.time-container p {
             black 1%,
             black 5%);
 }
-
-// datepicker
-
-// ::v-deep .vdp-datepicker__calendar {
-//     display: block;
-//     width: 100%;
-// }
 </style>

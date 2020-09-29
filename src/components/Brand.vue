@@ -12,7 +12,6 @@
 export default {
     methods: {
         toHomePage() {
-            console.log("apple");
             this.$router.push({
                 name: "Home"
             });
